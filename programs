@@ -1,0 +1,113 @@
+Selection Sort
+
+
+#include <stdio.h>
+
+int main(){
+    int i,j,min,temp,n,a[32];
+
+    printf("Enter the Numnber of Elements :");
+    scanf("%d",&n);
+
+    printf("Enter the Elements :");
+    for (i = 0 ; i < n; i++){
+        scanf("%d",&a[i]);
+    }
+
+    for (i = 0 ; i < n-1; i++){
+        min=i;
+
+        for (j= i+1; j < n; j++)
+        if (a[j]<a[min]){
+            min=j;
+        }
+
+       temp=a[i];
+       a[i]=a[min];
+       a[min]=temp;
+    }
+
+    printf("Sorted array :\n");
+    for (i = 0; i < n; i++){
+        printf(" %d",a[i]);
+    }
+}
+
+
+Insertion Sort 
+
+#include <stdio.h>
+
+int main(){
+    int i,j,n,key,arr[32];
+
+    printf("Enter the Number of Elements :");
+    scanf("%d",&n);
+
+    printf("Enter the Elements :");
+    for ( i = 0; i < n; i++){
+        scanf("%d",&arr[i]);
+    }
+
+    for( i = 0; i < n; i++){
+        key = arr[i];
+        j=i-1;
+
+        while(j>=0 && arr[j]>key){
+            arr[j+1]=arr[j];
+            j=j-1;
+        }
+        arr[j+1]=key;
+    }
+
+    printf("Sorted Array :\n");
+    for ( i = 0; i < n; i++){
+        printf(" %d",arr[i]);
+    }
+}
+
+
+Binary Search 
+
+#include <stdio.h>
+
+int main(){
+    
+    int i,key,n,mid,low,high,a[32],found =0;
+    printf("Enter the Number of Elements :");
+    scanf("%d",&n);
+
+    printf("Enter the Elements :");
+    for ( i = 0; i < n; i++){
+        scanf("%d",&a[i]);
+    }
+
+    printf("Enter the Elements to Search :");
+    scanf("%d",&key);
+
+    low = 0 ;
+    high = n-1;
+
+    while (low<=high){
+        mid=(low+high)/2;
+
+        if(a[mid]==key){
+            found=1;
+            break;
+        }
+
+        else if (a[mid]<key){
+            low = mid + 1;
+        }
+        else{
+            high = mid - 1;
+        }
+    }
+
+    if(found){
+        printf("Element is found at the position %d",mid+1);
+    }else{
+        printf("Element is not Found ");
+
+    }
+}
