@@ -111,3 +111,101 @@ int main(){
 
     }
 }
+
+Quicksort 
+
+#include <stdio.h>
+
+void quicksort(int arr[], int low, int high);
+int partition(int arr[], int low, int high);
+
+int main(){
+    int arr[32],n,i,j;
+
+    printf("Enter the number of Element :");
+    scanf("%d",&n);
+    printf("Enter the Elements :");
+    for (i = 0; i < n; i++){
+        scanf("%d",&arr[i]);
+    }
+
+    quicksort(arr,0,n-1);
+
+    printf("Sorted array :\n");
+    for( i = 0 ; i < n; i++){
+        printf(" %d",arr[i]);
+    }
+return 0;
+}
+
+void quicksort(int arr[], int low, int high){
+    if (low < high ){
+        int p = partition(arr,low,high);
+        quicksort(arr,low,p-1);
+        quicksort(arr,p+1,high);
+    }
+}
+
+int partition(int arr[], int low, int high){
+    int pivot = arr[high];
+    int i = low-1;
+    int j,temp;
+
+    for (j= low ; j<high; j++){
+    if(arr[j]<pivot){
+        i++;
+        temp=arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+    }
+    }
+
+    temp = arr[i+1];
+    arr[i+1]= arr[high];
+    arr[high]=temp;
+
+    return i+1;
+
+}
+
+
+Native String Matching
+
+
+#include <stdio.h>
+#include <string.h>
+
+int main(){
+    char text[100],pattern[100];
+    int n,m,i,j,found=0;
+
+    printf("Enter the Main String :");
+    fgets(text, sizeof(text), stdin);
+
+    printf("Enter the Pattern :");
+    fgets(pattern, sizeof(pattern), stdin);
+
+    text[strcspn(text, "\n")]='\0';
+    pattern[strcspn(pattern, "\n")]='\0';
+
+    n=strlen(text);
+    m=strlen(pattern);
+
+    printf("Pattern Found at index :");
+    for ( i = 0; i < n - m; i++){
+        for (j = 0; j < m; j++){
+            if(text[i+j] != pattern[j]){
+                break;
+            }
+        }
+        if (j==m){
+            printf("%d",i);
+            found=1;
+        }
+    }
+
+    if(!found){
+        printf("not found ");
+    }
+    printf("\n");
+}
